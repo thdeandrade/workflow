@@ -3,7 +3,7 @@
 Espaço destinado para a criação e manutenção de rotinas no desktop ArcGIS.
 
 <p>
-  <img src="esri.jpg", height=75 >
+  <img src="https://github.com/thdeandrade/workflow/blob/main/Apoio/esri.jpg?raw=true", height=75 >
 </p>
 
 ## **Projetos**
