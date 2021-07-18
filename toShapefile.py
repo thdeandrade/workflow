@@ -1,7 +1,4 @@
-###################
-##### ENTRADA #####
-###################
-
+# Informações de entrada
 p1 = r'.....\00_INIT\KML'
 p2 = r'.....\00_INIT\SHP_KML'
 p3 = r'.....\00_INIT\SHP_UTM'
@@ -12,10 +9,7 @@ coord = arcpy.SpatialReference('SIRGAS 2000 UTM Zone 22S')
 empresa = 'NOME DA EMPRESA'
 lote = 'LOTE UTILIZADO'
 
-###################
-##### PARTE 1 #####
-###################
-
+# Parte1
 def toShapefile(input, output):
     """"
     Identifica a estrutura do arquivo recebido e converte para o formato shapefile (.shp).
@@ -43,13 +37,9 @@ def toShapefile(input, output):
             print('Error: {}'.format(item))                                         #Qualquer outro erro
             continue
 
-# RUNNING FUNCTION
 toShapefile(p1, p2)
 
-###################
-##### PARTE 2 #####
-###################
-
+# Parte2
 def toUTM(input, output, coordinate):
     """
     Altera a projeção do arquivo shapefile (.shp) criado anteriormente (no caso, para UTM).
@@ -60,14 +50,10 @@ def toUTM(input, output, coordinate):
     for item in l2:
         i = item.split('.')[0]
         arcpy.management.Project(input + '\\' + item, output + '\\' + i + '_UTM.shp', coordinate)
-
-# RUNNING FUNCTION		
+		
 toUTM(p2, p3, coord)
 
-###################
-##### PARTE 3 #####
-###################
-
+# Parte 3
 def fillAttributes(input, company, batch):
     """
     Manipula a tabela de atributos (attribute table) para criar e preencher com informações inicias básicas e apaga o que não for necessário.
@@ -113,16 +99,12 @@ def fillAttributes(input, company, batch):
 
     arcpy.DeleteField_management(i, remove)
 
-# RUNNING FUNCTION
 fillAttributes(p3, empresa, lote)
 
-##############################
-##### PARTE 4 - OPCIONAL #####
-##############################
-
+# Parte 4 - opcional
 def joinAll(input, output, company, batch):
     """
-    Para situações com mais de uma fazenda, é criado um arquivo único (função opcional).
+    Inclui todas as fazendas em um único arquivo (função opcional).
     """
     arcpy.env.workspace = p3
     l3 = arcpy.ListFiles('*.shp')
@@ -134,5 +116,4 @@ def joinAll(input, output, company, batch):
     final_name = batch.split('.')
     arcpy.Merge_management(list, output + '\\' + company + '_' + final_name[0] + '_' + final_name[1] + '.shp')
 
-# RUNNING FUNCTION
 joinAll(p3, saida, empresa, lote)
