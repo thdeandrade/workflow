@@ -62,8 +62,6 @@ def fillAttributes(input, company, batch):
     arcpy.env.workspace = input
     l3 = arcpy.ListFiles('*.shp')
     
-    remove = ['FID_Polygo', 'Name', 'FolderPath', 'SymbolID', 'AltMode', 'Base', 'Clamped', 'Extruded', 'Snippet', 'PopupInfo', 'Shape_Leng', 'Shape_Area']
-
     for i in l3:
         arcpy.AddField_management(i, 'CODE', 'TEXT')
         with arcpy.da.UpdateCursor(i, 'CODE') as rows:
@@ -96,7 +94,8 @@ def fillAttributes(input, company, batch):
             if row[0] == '':
                 row[0] = company
                 rows.updateRow(row)
-
+		
+    remove = ['FID_Polygo', 'Name', 'FolderPath', 'SymbolID', 'AltMode', 'Base', 'Clamped', 'Extruded', 'Snippet', 'PopupInfo', 'Shape_Leng', 'Shape_Area']
     arcpy.DeleteField_management(i, remove)
 
 fillAttributes(p3, empresa, lote)
