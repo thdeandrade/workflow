@@ -77,26 +77,25 @@ def fillAttributes(input, company, batch):
                     row[0] = i.upper().split('_')[1]
                     rows.updateRow(row)
 
-    arcpy.AddField_management(i, 'AREA', 'DOUBLE')
-    arcpy.CalculateField_management(i, 'AREA', '!shape.Area@hectares!', "PYTHON", '')
+        arcpy.AddField_management(i, 'AREA', 'DOUBLE')
+        arcpy.CalculateField_management(i, 'AREA', '!shape.Area@hectares!', "PYTHON", '')
 
-    arcpy.AddField_management(i, 'LOTE', 'TEXT')
-    with arcpy.da.UpdateCursor(i, 'LOTE') as rows:
-        for row in rows:
-            if row[0] == '':
-                row[0] = batch
-                rows.updateRow(row)
+        arcpy.AddField_management(i, 'LOTE', 'TEXT')
+        with arcpy.da.UpdateCursor(i, 'LOTE') as rows:
+            for row in rows:
+                if row[0] == '':
+                    row[0] = batch
+                    rows.updateRow(row)
 				
-    arcpy.AddField_management(i, 'EMPRESA', 'TEXT')
-	
-    with arcpy.da.UpdateCursor(i, 'EMPRESA') as rows:
-        for row in rows:
-            if row[0] == '':
-                row[0] = company
-                rows.updateRow(row)
+        arcpy.AddField_management(i, 'EMPRESA', 'TEXT')
+        with arcpy.da.UpdateCursor(i, 'EMPRESA') as rows:
+            for row in rows:
+                if row[0] == '':
+                    row[0] = company
+                    rows.updateRow(row)
 		
-    remove = ['FID_Polygo', 'Name', 'FolderPath', 'SymbolID', 'AltMode', 'Base', 'Clamped', 'Extruded', 'Snippet', 'PopupInfo', 'Shape_Leng', 'Shape_Area']
-    arcpy.DeleteField_management(i, remove)
+        remove = ['Id', 'FID_Polygo', 'Name', 'FolderPath', 'SymbolID', 'AltMode', 'Base', 'Clamped', 'Extruded', 'Snippet', 'PopupInfo', 'Shape_Leng', 'Shape_Area']
+        arcpy.DeleteField_management(i, remove)
 
 fillAttributes(p3, empresa, lote)
 
