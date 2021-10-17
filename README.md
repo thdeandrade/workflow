@@ -12,5 +12,5 @@ Espaço destinado para a criação e manutenção de rotinas no desktop ArcGIS.
 
 * **[Conversão de arquivo kml/kmz para shapefile.](https://bit.ly/3B0BWUf)**
 
-&emsp;&emsp;É possível verificar a organização dos [arquivos aqui](https://bit.ly/36vLYyZ) e a organização das [pastas aqui](https://bit.ly/3kfA2te).
+&emsp;&emsp;Você pode ter acesso aos arquivos utilizados [aqui](https://bit.ly/30qTon8).
 
