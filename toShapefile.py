@@ -1,11 +1,11 @@
 #input information 
-f = r'C:\firstSteps'
-folder1 = r'C:\firstSteps\00_ORIGINAL'
+f = r'C:\01_firstSteps'
+folder1 = f + '\\00_ORIGINAL'
  
-arcpy.CreateFolder_management(r'C:/firstSteps/', '01_KML_TO_SHAPEFILE')
-folder2 = r'C:\firstSteps\01_KML_TO_SHAPEFILE'
-arcpy.CreateFolder_management(pf, '02_SHAPEFILE_UTM')
-folder3 = r'C:\firstSteps\02_SHAPEFILE_UTM'
+arcpy.CreateFolder_management(f, '01_KML_TO_SHAPEFILE')
+folder2 = f + '\\01_KML_TO_SHAPEFILE'
+arcpy.CreateFolder_management(f, '02_SHAPEFILE_UTM')
+folder3 = f+ '\\02_SHAPEFILE_UTM'
 coord = arcpy.SpatialReference('SIRGAS 2000 UTM Zone 22S')
 
 #part1
