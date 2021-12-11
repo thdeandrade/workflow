@@ -104,4 +104,4 @@ def joinAll(input, output):
 		
     arcpy.Merge_management(list, output + '\\' + 'Brazilian_States.shp')
 
-joinAll(folder3, pf)
+joinAll(folder3, f)
